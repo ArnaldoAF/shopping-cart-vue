@@ -8,16 +8,23 @@
 </template>
 
 <script>
-import shop from '@/api/shop'
+import shop from '@/api/shop';
+import store from '@/store/index';
 export default {
-    data() {
-        return {
-            products: []
+    // data() {
+    //     return {
+    //         products: []
+    //     }
+    // },
+    computed: {
+        products() {
+            return store.state.products
         }
     },
     created() {
         shop.getProducts(products => {
-            this.products = products
+            //this.products = products
+            store.commit('setProducts', products);
         })
     }
 }
