@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     // = data
-    products: []
+    products: [],
+    cart: []
   },
   getters: {
     // = computed properties
@@ -17,28 +18,48 @@ export default new Vuex.Store({
   },
   actions: {
     // = methods
-    fetchProducts({commit}) {
+    fetchProducts({ commit }) {
       //make the call
       // run setProducts mutation
       return new Promise((resolve, reject) => {
         shop.getProducts(products => {
-            //this.products = products
-            commit("setProducts", products);
-            resolve();
-          });
-      })
-      
+          //this.products = products
+          commit("setProducts", products);
+          resolve();
+        });
+      });
     },
+    addProductToCart(context, product) {
+      if (product.inventory > 0) {
+          const cartItem = context.state.cart.find(item => item.id === product.id);
+        if (!cartItem) {
+          context.commit('pushProductToCart', product.id);
+        } else {
+          context.commit('incrementItemQuantity', cartItem);
+        }
+
+        context.commit('decrementProductInventory', product);
+      }
+    }
     // actions control when the mutations are fired
-    // addToCart(context, product) {
-    //     if(product.inventory > 0)
-    //     context.commit("pushProductToCart", product)
-    // }
+
   },
   mutations: {
     setProducts(state, products) {
       //updated products
       state.products = products;
+    },
+    pushProductToCart(state, productId) {
+        state.cart.push({
+            id: productId,
+            quantity: 1
+        })
+    },
+    incrementItemQuantity(state, cartItem) {
+        cartItem.quantity++;
+    },
+    decrementProductInventory(state, cartItem) {
+        cartItem.quantity--;
     }
   }
 });
