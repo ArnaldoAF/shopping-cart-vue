@@ -1,27 +1,33 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    state: { // = data
-        products: []
+  state: {
+    // = data
+    products: []
+  },
+  getters: {
+    // = computed properties
+    productsCount() {
+      
     },
-    getters: { // = computed properties
-        productsCount() {
-
-        }
-    },
-    actions: { // = methods
-        fetchProductions() {
-            //make the call
-            // runb setProducts mutation
-        }
-    },
-    mutations: {
-        setProducts(state, products) {
-            //updated products
-            state.products = products
-        }
+    availableProducts(state, getters) {
+        return state.products.filter(product => product.inventory > 0);
     }
-})
+  },
+  actions: {
+    // = methods
+    fetchProductions() {
+      //make the call
+      // runb setProducts mutation
+    }
+  },
+  mutations: {
+    setProducts(state, products) {
+      //updated products
+      state.products = products;
+    }
+  }
+});
