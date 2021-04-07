@@ -17,12 +17,12 @@ export default {
     },
     computed: {
         products() {
-            return $this.store.getters.availableProducts;
+            return this.$store.getters.availableProducts;
         }
     },
     created() {
         this.loading = true;
-        $this.store.dispatch('fetchProducts').then(() => this.loading = false)
+        this.$store.dispatch('fetchProducts').then(() => this.loading = false)
     }
 }
 </script>
