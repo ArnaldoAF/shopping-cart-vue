@@ -14,6 +14,19 @@ export default new Vuex.Store({
     productsCount() {},
     availableProducts(state, getters) {
       return state.products.filter(product => product.inventory > 0);
+    },
+    cartProducts (state) {
+      return state.cart.map(cartItem => {
+        const product = state.products.find(product => product.id === cartItem.id);
+        return {
+          title: product.title,
+          price: product.price,
+          quantity: cartItem.quantity
+        }
+      })
+    },
+    cartTotal(state, getters) {
+      return getters.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
     }
   },
   actions: {
@@ -58,8 +71,8 @@ export default new Vuex.Store({
     incrementItemQuantity(state, cartItem) {
         cartItem.quantity++;
     },
-    decrementProductInventory(state, cartItem) {
-        cartItem.quantity--;
+    decrementProductInventory(state, product) {
+        product.inventory--;
     }
   }
 });
