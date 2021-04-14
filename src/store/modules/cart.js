@@ -1,11 +1,12 @@
 import shop from "@/api/shop";
 export default {
+  namespaced:true,
   state: {
     itens: [],
     checkoutStatus: null
   },
   getters: {
-    cartProducts(state, getters, rootState) {
+    cartProducts(state, getters, rootState, rootGetters) {
       return state.itens.map(cartItem => {
         const product = rootState.products.itens.find(
           product => product.id === cartItem.id

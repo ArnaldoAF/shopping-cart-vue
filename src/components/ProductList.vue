@@ -34,13 +34,13 @@ export default {
                 return state.products.itens[productIndex]
             }
         }),
-        ...mapGetters({
+        ...mapGetters('products', {
             productIsInStock: 'productIsInStock'
         })
     },
     methods: {
         ...mapActions({
-            fetchProducts: 'fetchProducts',
+            fetchProducts: 'products/fetchProducts',
             addProductToCart: 'addProductToCart'
         }),
         
