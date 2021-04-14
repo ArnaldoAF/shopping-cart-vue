@@ -28,10 +28,10 @@ export default {
     },
     computed: {
         ...mapState({
-            products: state => state.products,
-            firstProduct: state => state.products[0],
+            products: state => state.products.itens,
+            firstProduct: state => state.products.itens[0],
             specificProduct (state) {
-                return state.products[productIndex]
+                return state.products.itens[productIndex]
             }
         }),
         ...mapGetters({
