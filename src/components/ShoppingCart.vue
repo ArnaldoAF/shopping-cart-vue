@@ -8,7 +8,7 @@
       </ul>
       <p>Total: {{total | currency}}</p>
       
-      <button @click="checkout"> CHECKOUT</button>
+      <button class="button is-info" @click="checkout"> CHECKOUT</button>
       <p v-if="checkoutStatus">{{checkoutStatus}}</p>
   </div>
 </template>

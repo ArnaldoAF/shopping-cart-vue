@@ -1,8 +1,13 @@
 <template>
   <div id="app">
-    <ProductList />
-    <hr>
-    <ShoppingCart />
+    <div class="columns is-variable is-5">
+      <div class="column block is-8 ">
+        <ProductList />
+      </div>
+      <div class="column  block is-4 box">
+      <ShoppingCart />
+      </div>
+    </div>
 
   </div>
 </template>
