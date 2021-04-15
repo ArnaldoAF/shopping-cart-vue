@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title is-2 box">Shopping Cart</h1>
-    <table class="table is-fullwidth is-narrow">
+    <table class="table is-fullwidth is-narrow" id="cart-box">
       <tfoot>
         <tr>
           <th></th>
@@ -50,4 +50,5 @@ export default {
 </script>
 
 <style>
+
 </style>
