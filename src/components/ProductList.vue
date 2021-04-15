@@ -1,32 +1,33 @@
 <template>
-  <div>
-    <h1>Product List</h1>
-    <h1 v-if="loading">LOADING...</h1>
+  <div id="list">
+    <progress v-if="loading" class="progress is-large is-info" max="100">60%</progress>
     <div v-else class="columns is-multiline is-mobile">
-      <div
-        class="column is-4 card"
-        v-for="product in products"
-        :key="product.id"
-      >
-        <header class="card-header">
-          <p class="card-header-title">
-            {{ product.title }}
-          </p>
-        </header>
+      <div class="column is-4" v-for="product in products" :key="product.id">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              {{ product.title }}
+            </p>
+          </header>
 
-        <footer class="card-footer">
-          <p class="card-footer-item">{{ product.price | currency }}</p>
-          <p class="card-footer-item">{{ product.inventory }}</p>
-        </footer>
-        <footer class="card-footer">
-          <button
-            class="button is-primary card-footer-item"
-            :disabled="!productIsInStock(product)"
-            @click="addProductToCart(product)"
-          >
-            Add to cart
-          </button>
-        </footer>
+          <footer class="card-footer">
+            <p class="card-footer-item is-size-4 has-text-weight-medium">
+              {{ product.price | currency }}
+            </p>
+            <p class="card-footer-item is-size-5">
+              {{ product.inventory }}
+            </p>
+          </footer>
+          <footer class="card-footer">
+            <button
+              class="button is-primary card-footer-item"
+              :disabled="!productIsInStock(product)"
+              @click="addProductToCart(product)"
+            >
+              Add to cart
+            </button>
+          </footer>
+        </div>
       </div>
     </div>
   </div>
@@ -67,4 +68,7 @@ export default {
 </script>
 
 <style>
+#id {
+  overflow: scroll;
+}
 </style>
