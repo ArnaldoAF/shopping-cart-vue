@@ -21,6 +21,7 @@
 
     <button 
         class="button is-info is-fullwidth" 
+        :disabled="products.length==0"
         @click="checkout">CHECKOUT</button>
     <div 
       v-if="checkoutStatus" 
