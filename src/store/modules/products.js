@@ -43,8 +43,6 @@ export default {
     },
 
     incrementProductInventory(state, {product, quantity}) {
-      console.log(quantity);
-      console.log(product.inventory);
       product.inventory+= quantity;
     }
   }
