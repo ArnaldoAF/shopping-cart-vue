@@ -40,6 +40,12 @@ export default {
 
     decrementProductInventory(state, product) {
       product.inventory--;
+    },
+
+    incrementProductInventory(state, {product, quantity}) {
+      console.log(quantity);
+      console.log(product.inventory);
+      product.inventory+= quantity;
     }
   }
 };

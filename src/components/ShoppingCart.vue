@@ -12,14 +12,16 @@
       <tbody>
         <tr v-for="product in products" :key="product.id">
           <td class="has-text-left">{{ product.quantity }}</td>
-          <td class="has-text-left">{{ product.title }}</td>
+          <td class="has-text-left">{{ product.title }} <span @click="removeProductFromCart(product)" class="tag is-danger exclude">X</span></td>
           <td class="has-text-right">{{ product.price | currency }}</td>
         </tr>
       </tbody>
     </table>
     
 
-    <button class="button is-info is-fullwidth" @click="checkout">CHECKOUT</button>
+    <button 
+        class="button is-info is-fullwidth" 
+        @click="checkout">CHECKOUT</button>
     <div 
       v-if="checkoutStatus" 
       class="notification is-light" 
@@ -36,6 +38,7 @@ import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions("cart", ["checkout"]),
+    ...mapActions(["removeProductFromCart"])
   },
   computed: {
     ...mapGetters("cart", {
@@ -50,5 +53,7 @@ export default {
 </script>
 
 <style>
-
+.exclude {
+  cursor: pointer
+}
 </style>
